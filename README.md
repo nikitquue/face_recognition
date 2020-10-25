@@ -5,3 +5,4 @@
 <code>pip install face_recognition</code>
 <p>and opencv:</p>
 <code>pip install opencv-python</code>
+<p>If you have any issues you can watch this video: https://www.youtube.com/watch?v=xaDJ5xnc8dc&t=787s </p>

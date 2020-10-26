@@ -1,32 +1,24 @@
 import face_recognition
-import cv2
+from cv2 import cv2
 import numpy as np
+from db import get_data
 
 
 
 video_capture = cv2.VideoCapture(0)
+row_data = get_data()
+known_face_encodings = []
+known_face_names = []
+known_ages = []
 
 
-obama_image = face_recognition.load_image_file("known/obama.jpg")
-obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
 
+for dic in row_data:
+    known_face_names.append(dic['Name'] + ' ' + dic['Surname'])
+    known_ages.append(dic['Age'])    
+    temp_image = face_recognition.load_image_file(dic['Path'])
+    known_face_encodings.append(face_recognition.face_encodings(temp_image)[0])
 
-biden_image = face_recognition.load_image_file("known/biden.jpg")
-biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
-
-my_image = face_recognition.load_image_file("known/me.jpg")
-my_face_encoding = face_recognition.face_encodings(my_image)[0]
-
-known_face_encodings = [
-    obama_face_encoding,
-    biden_face_encoding,
-    my_face_encoding
-]
-known_face_names = [
-    "Barack Obama",
-    "Joe Biden",
-    "Nikita"
-]
 
 # Initialize some variables
 face_locations = []

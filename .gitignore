@@ -5,10 +5,3 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-dist/
-eggs/
-.eggs/
-sdist/
-*.egg-info/
-.installed.cfg
-*.egg

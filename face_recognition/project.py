@@ -1,9 +1,10 @@
+import os
 import face_recognition
 from cv2 import cv2
 import numpy as np
 from db import get_data
 
-
+dirname = os.path.dirname(__file__) + 'known/'
 
 video_capture = cv2.VideoCapture(0)
 row_data = get_data()
@@ -15,8 +16,9 @@ known_ages = []
 
 for dic in row_data:
     known_face_names.append(dic['Name'] + ' ' + dic['Surname'])
-    known_ages.append(dic['Age'])    
-    temp_image = face_recognition.load_image_file(dic['Path'])
+    known_ages.append(dic['Age'])
+    filename = os.path.join(dirname, dic['Path'])
+    temp_image = face_recognition.load_image_file(filename)
     known_face_encodings.append(face_recognition.face_encodings(temp_image)[0])
 
 
